@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Compress images online for free with our responsive image compression tool. Optimize JPEG, PNG, and WebP files while maintaining quality.">
+    <meta name="keywords" content="image compressor, optimize images, JPEG compression, PNG compression, web optimization">
     <title>Image Compressor Pro | Free Online Tool</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
@@ -12,6 +13,35 @@
             --secondary-color: #1d4ed8;
             --background: #f8fafc;
             --text-color: #1e293b;
+        }
+
+        /* Theme Variables */
+        .theme-default {
+            --primary-color: #2563eb;
+            --secondary-color: #1d4ed8;
+            --background: #f8fafc;
+            --text-color: #1e293b;
+        }
+
+        .theme-dark {
+            --primary-color: #3b82f6;
+            --secondary-color: #60a5fa;
+            --background: #1e293b;
+            --text-color: #f8fafc;
+        }
+
+        .theme-nature {
+            --primary-color: #16a34a;
+            --secondary-color: #22c55e;
+            --background: #f0fdf4;
+            --text-color: #14532d;
+        }
+
+        .theme-warm {
+            --primary-color: #ea580c;
+            --secondary-color: #f97316;
+            --background: #fff7ed;
+            --text-color: #431407;
         }
 
         * {
@@ -26,6 +56,7 @@
             color: var(--text-color);
             line-height: 1.6;
             min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .container {
@@ -188,6 +219,36 @@
             border-radius: 0.5rem;
         }
 
+        .color-picker {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 1rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .color-options {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .color-swatch {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .color-swatch.active {
+            border-color: var(--text-color);
+        }
+
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -217,16 +278,37 @@
                 flex-direction: column;
                 text-align: center;
             }
+
+            .color-picker {
+                bottom: 10px;
+                right: 10px;
+                padding: 0.5rem;
+            }
         }
     </style>
 </head>
-<body>
+<body class="theme-default">
+    <!-- Color Picker -->
+    <div class="color-picker">
+        <h4>Choose Theme:</h4>
+        <div class="color-options">
+            <div class="color-swatch theme-default" style="background: #f8fafc;" 
+                 onclick="changeTheme('default')"></div>
+            <div class="color-swatch theme-dark" style="background: #1e293b;" 
+                 onclick="changeTheme('dark')"></div>
+            <div class="color-swatch theme-nature" style="background: #f0fdf4;" 
+                 onclick="changeTheme('nature')"></div>
+            <div class="color-swatch theme-warm" style="background: #fff7ed;" 
+                 onclick="changeTheme('warm')"></div>
+        </div>
+    </div>
+
+    <!-- Header -->
     <header class="header">
         <div class="container">
             <h1>Image Compressor Pro</h1>
             <p>Optimize your images for web with lossless compression</p>
             <div class="ad-card" style="margin-top: 2rem;">
-                <!-- AdSense Header Ad -->
                 <ins class="adsbygoogle"
                     style="display:block"
                     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
@@ -237,8 +319,10 @@
         </div>
     </header>
 
+    <!-- Main Content -->
     <main class="container">
         <div class="main-grid">
+            <!-- Compressor Section -->
             <div class="compressor-card">
                 <div class="file-input">
                     <span>📁 Drag & drop or click to upload</span>
@@ -272,8 +356,8 @@
                 </div>
             </div>
 
+            <!-- Ad Section -->
             <aside class="ad-card">
-                <!-- AdSense Sidebar Ad -->
                 <ins class="adsbygoogle"
                     style="display:block"
                     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
@@ -285,8 +369,10 @@
     </main>
 
     <script>
+        // Initialize AdSense
         (adsbygoogle = window.adsbygoogle || []).push({});
 
+        // Compression Functionality
         const compressionLevel = document.getElementById('compressionLevel');
         const qualityValue = document.getElementById('qualityValue');
 
@@ -298,7 +384,6 @@
             const file = document.getElementById('imageInput').files[0];
             const quality = compressionLevel.value / 100;
             const loader = document.getElementById('loader');
-            const previewContainer = document.getElementById('previewContainer');
             const downloadLink = document.getElementById('downloadLink');
             const fileInfo = document.getElementById('fileInfo');
 
@@ -341,6 +426,24 @@
                 alert(`Error: ${error.message}`);
             }
         }
+
+        // Theme Management
+        function changeTheme(themeName) {
+            document.body.className = `theme-${themeName}`;
+            
+            document.querySelectorAll('.color-swatch').forEach(swatch => {
+                swatch.classList.remove('active');
+            });
+            
+            event.target.classList.add('active');
+            localStorage.setItem('selectedTheme', themeName);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('selectedTheme') || 'default';
+            changeTheme(savedTheme);
+            document.querySelector(`.theme-${savedTheme}`).classList.add('active');
+        });
     </script>
 </body>
 </html>
