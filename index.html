@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="All-in-One Digital Solution - Image Tools, PDF Tools, and More. Convert, compress, and transform files effortlessly.">
+    <title>ToolMaster Pro - Your Ultimate Digital Toolkit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1d4ed8;
+            --accent-color: #f59e0b;
+            --background: #f8fafc;
+            --text-color: #1e293b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 4rem 1rem;
+            background: linear-gradient(45deg, #ffffff, #f1f5f9);
+            border-radius: 1rem;
+            margin: 2rem 0;
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .tool-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tool-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .category-section {
+            margin: 3rem 0;
+        }
+
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-color);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 3rem 0;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background: var(--text-color);
+            color: white;
+            padding: 3rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero-section {
+                padding: 2rem 1rem;
+            }
+
+            .tool-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .quick-actions {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .quick-action-btn {
+            background: var(--primary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tool-card-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="#" class="logo">ToolMaster Pro</a>
+            <div class="nav-links">
+                <a href="#tools" class="btn btn-primary">All Tools</a>
+            </div>
+        </nav>
+
+        <div class="hero-section">
+            <h1>Your Ultimate Digital Toolkit</h1>
+            <p>Convert, compress, edit, and transform files with ease</p>
+            <div style="margin-top: 2rem;">
+                <input type="text" placeholder="Search tools..." style="padding: 0.8rem; width: 300px; max-width: 100%; border-radius: 0.5rem; border: 1px solid #ddd;">
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <section class="category-section">
+            <div class="category-header">
+                <h2>Popular Image Tools</h2>
+                <a href="#" class="btn btn-primary">See All</a>
+            <div class="tool-grid">
+    <!-- Image Compressor Card -->
+    <div class="tool-card">
+        <div class="card-image-container">
+            <img src="image-compressor-thumbnail.jpg" alt="Image Compressor" class="tool-card-image">
+            <div class="image-overlay"></div>
+            <span class="tool-category">Image Tools</span>
+        </div>
+        <div class="card-content">
+            <h3>Image Compressor</h3>
+            <p>Reduce image size while maintaining quality. Supports JPG, PNG & WebP formats</p>
+            <div class="tool-stats">
+                <span class="stat-item"><i class="fas fa-download"></i> 500K+ uses</span>
+                <span class="stat-item"><i class="fas fa-star"></i> 4.8</span>
+            </div>
+            <button class="btn btn-outline">
+                <i class="fas fa-compress"></i> Use Now
+            </button>
+        </div>
+    </div>
+
+    <!-- PDF Converter Card -->
+    <div class="tool-card">
+        <div class="card-image-container">
+            <img src="pdf-converter-thumbnail.jpg" alt="PDF Converter" class="tool-card-image">
+            <div class="image-overlay"></div>
+            <span class="tool-category">PDF Tools</span>
+        </div>
+        <div class="card-content">
+            <h3>PDF Converter</h3>
+            <p>Convert PDFs to Word, Excel, or images. Merge & split PDF files</p>
+            <div class="tool-stats">
+                <span class="stat-item"><i class="fas fa-download"></i> 300K+ uses</span>
+                <span class="stat-item"><i class="fas fa-star"></i> 4.7</span>
+            </div>
+            <button class="btn btn-outline">
+                <i class="fas fa-file-export"></i> Use Now
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+    .tool-card {
+        position: relative;
+        overflow: hidden;
+        background: #ffffff;
+        border-radius: 12px;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                    box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .tool-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-image-container {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+    }
+
+    .tool-card-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .tool-card:hover .tool-card-image {
+        transform: scale(1.05);
+    }
+
+    .image-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,0.6) 100%);
+    }
+
+    .tool-category {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--primary-color);
+    }
+
+    .card-content {
+        padding: 1.5rem;
+    }
+
+    .card-content h3 {
+        margin-bottom: 0.75rem;
+        color: var(--text-color);
+    }
+
+    .card-content p {
+        color: #64748b;
+        margin-bottom: 1rem;
+        min-height: 60px;
+    }
+
+    .tool-stats {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1.2rem;
+        font-size: 0.9rem;
+        color: #64748b;
+    }
+
+    .stat-item {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+    }
+
+    .btn-outline {
+        background: transparent;
+        border: 2px solid var(--primary-color);
+        color: var(--primary-color);
+        padding: 0.6rem 1.2rem;
+    }
+
+    .btn-outline:hover {
+        background: var(--primary-color);
+        color: white;
+    }
+
+    @media (max-width: 768px) {
+        .card-image-container {
+            height: 160px;
+        }
+        
+        .card-content {
+            padding: 1rem;
+        }
+    }
+</style>
+                <!-- Add more tool cards -->
+            </div>
+        </section>
+
+        <section class="category-section">
+            <div class="category-header">
+                <h2>PDF Tools</h2>
+                <a href="#" class="btn btn-primary">See All</a>
+            </div>
+            <div class="tool-grid">
+                <div class="tool-card">
+                    <i class="fas fa-file-pdf tool-icon"></i>
+                    <h3>PDF to Word</h3>
+                    <p>Convert PDF documents to editable Word files</p>
+                </div>
+                <!-- Add more PDF tool cards -->
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="feature-card">
+                <i class="fas fa-shield-alt fa-3x" style="color: var(--primary-color); margin-bottom: 1rem;"></i>
+                <h3>Secure Processing</h3>
+                <p>All files are processed securely and deleted automatically</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-clock fa-3x" style="color: var(--primary-color); margin-bottom: 1rem;"></i>
+                <h3>Fast Processing</h3>
+                <p>Quick conversion with cloud-powered servers</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-mobile-alt fa-3x" style="color: var(--primary-color); margin-bottom: 1rem;"></i>
+                <h3>Mobile Friendly</h3>
+                <p>Works perfectly on all devices</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h4>ToolMaster Pro</h4>
+                <p>© 2023 All rights reserved</p>
+            </div>
+            <div>
+                <h4>Tools</h4>
+                <ul>
+                    <li><a href="#">Image Tools</a></li>
+                    <li><a href="#">PDF Tools</a></li>
+                    <li><a href="#">Video Tools</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <div class="quick-actions">
+        <div class="quick-action-btn">
+            <i class="fas fa-compress"></i>
+        </div>
+        <div class="quick-action-btn">
+            <i class="fas fa-file-export"></i>
+        </div>
+    </div>
+</body>
+</html>
